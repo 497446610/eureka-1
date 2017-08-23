@@ -6,5 +6,6 @@
 windows环境需要修改hosts文件：
 c:\Windows\System32\drivers\etc\hosts，添加：
 
+
 127.0.0.1   eureka-server-1111
 127.0.0.1   eureka-server-2222
