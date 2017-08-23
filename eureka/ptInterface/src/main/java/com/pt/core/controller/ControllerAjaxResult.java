@@ -1,4 +1,4 @@
-package com.lbh360.platform.controller;
+package com.pt.core.controller;
 
 /**
  * 说明: 功能描述

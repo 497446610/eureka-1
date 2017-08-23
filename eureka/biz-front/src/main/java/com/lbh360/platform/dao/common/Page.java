@@ -1,5 +1,5 @@
 
-package com.pt.core.utils;
+package com.lbh360.platform.dao.common;
 
 import com.github.pagehelper.PageRowBounds;
 

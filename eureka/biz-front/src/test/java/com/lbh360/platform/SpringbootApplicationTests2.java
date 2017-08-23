@@ -13,8 +13,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.lbh360.platform.base.service.bean.merch.MerchBaseInfoBean;
+import com.lbh360.platform.dao.common.Page;
 import com.lbh360.platform.service.merch.IMerchService;
-import com.pt.core.utils.Page;
 
 /*import com.dbuyer.springboot.jpa.order.MemberInfo;
 import com.dbuyer.springboot.jpa.order.MemberInfoRepository;

@@ -2,22 +2,15 @@ package com.lbh360.platform.base.service.bean.merch;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  * 商品价格
  * 
  */
-@Entity
-@Table(name = "MERCH_PRICE")
 public class MerchPriceBean {
 
 	/**
 	 *	ID
 	 */
-	@Id
 	private String id;
 
 	/**

@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.lbh360.platform.base.service.bean.merch.MerchBaseInfoBean;
+import com.lbh360.platform.dao.common.Page;
 import com.pt.core.common.exception.ServiceException;
-import com.pt.core.utils.Page;
 
 /**
  * 说明: 功能描述

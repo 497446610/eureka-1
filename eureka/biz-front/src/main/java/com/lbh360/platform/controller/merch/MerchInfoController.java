@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lbh360.platform.base.service.bean.merch.MerchBaseInfoBean;
 import com.lbh360.platform.controller.AbstractCommand;
-import com.lbh360.platform.controller.ControllerAjaxResult;
+import com.lbh360.platform.dao.common.Page;
 import com.lbh360.platform.service.merch.IMerchService;
 import com.lbh360.platform.service.merch.impl.MerchServiceImpl;
 import com.pt.core.common.exception.ServiceException;
-import com.pt.core.utils.Page;
+import com.pt.core.controller.ControllerAjaxResult;
 
 /**
  * 说明: 功能描述

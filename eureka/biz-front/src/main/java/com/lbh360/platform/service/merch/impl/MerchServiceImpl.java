@@ -14,10 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lbh360.platform.base.common.ServiceErrorCode;
 import com.lbh360.platform.base.dao.domain.merch.MerchBaseInfo;
 import com.lbh360.platform.base.service.bean.merch.MerchBaseInfoBean;
+import com.lbh360.platform.dao.common.Page;
 import com.lbh360.platform.dao.mapper.merch.MerchBaseInfoMapper;
 import com.lbh360.platform.service.merch.IMerchService;
 import com.pt.core.common.exception.ServiceException;
-import com.pt.core.utils.Page;
 
 /**
  * 说明: 功能描述
