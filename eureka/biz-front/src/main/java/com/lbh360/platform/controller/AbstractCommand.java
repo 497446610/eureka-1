@@ -1,5 +1,8 @@
 package com.lbh360.platform.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,7 +39,6 @@ public abstract class AbstractCommand {
 
 	}
 
-
 	protected ControllerAjaxResult ajaxResult(String code) {
 		return new ControllerAjaxResult(code, null, null);
 	}
@@ -52,7 +54,6 @@ public abstract class AbstractCommand {
 	protected ControllerAjaxResult ajaxResult(String code, String message, Object row, Integer total) {
 		return new ControllerAjaxResult(code, message, row, total.toString());
 	}
-	
 
 	protected ControllerAjaxResult ajaxResult(String code, String message, Object row, Integer total,
 			Integer totalPage) {
@@ -86,6 +87,19 @@ public abstract class AbstractCommand {
 		int numPerPage = NumberUtils.toInt(strNumPerPage, defSize);
 		Page page = new Page(pageIndex, numPerPage);
 		return page;
+	}
+
+	public Map<String, Object> request2Map(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String temValue = null;
+		for (Object temKey : request.getParameterMap().keySet()) {
+			temValue = request.getParameter(temKey.toString());
+			if (null != temValue && !"".equals(temValue)) {
+				map.put(temKey.toString(), temValue);
+			}
+		}
+
+		return map;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.lbh360.platform.controller.merch;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,9 +39,11 @@ public class MerchInfoController extends AbstractCommand {
 	@ResponseBody
 	public ControllerAjaxResult merchlist(HttpServletRequest request) {
 		Page page = getPage(request);
-		List<?> result;
+		List<MerchBaseInfoBean> result;
 		try {
-			result = merchService.queryMerchInfo4Restaurant(null, null, page);
+			Map<String, Object> condition = request2Map(request);
+			
+			result = merchService.queryMerchInfo4Restaurant(condition, null, page);
 			return ajaxResult(ControllerAjaxResult.SUCCESS, "", result, page);
 		} catch (ServiceException e) {
 			return ajaxResult(ControllerAjaxResult.FAILE, "数据查询失败！");
