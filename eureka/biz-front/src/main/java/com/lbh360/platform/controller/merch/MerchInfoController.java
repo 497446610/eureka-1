@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lbh360.platform.base.service.bean.merch.MerchBaseInfoBean;
@@ -34,6 +35,7 @@ public class MerchInfoController extends AbstractCommand {
 	IMerchService merchService;
 
 	@RequestMapping("list")
+	@ResponseBody
 	public ControllerAjaxResult merchlist(HttpServletRequest request) {
 		Page page = getPage(request);
 		List<?> result;

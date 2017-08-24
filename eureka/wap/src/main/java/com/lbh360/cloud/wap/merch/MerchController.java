@@ -16,7 +16,7 @@ public class MerchController {
 	@RequestMapping("list")
 	public ControllerAjaxResult list() {
 		ControllerAjaxResult result = restTemplate
-				.getForEntity("http://merchService/merch/list", ControllerAjaxResult.class).getBody();
+				.getForObject("http://merchService/merch/list", ControllerAjaxResult.class);
 		return result;
 	}
 

@@ -1,12 +1,16 @@
 package com.pt.core.controller;
 
+import java.io.Serializable;
+
 /**
  * 说明: 功能描述
  * 
  * @author 况小锋
  * @version 1.0
  */
-public class ControllerAjaxResult {
+public class ControllerAjaxResult implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	public static final String SUCCESS = "SUCCESS";
 	public static final String FAILE = "FAILE";
 	public static final String TIMEOUT = "TIMEOUT";
@@ -27,7 +31,6 @@ public class ControllerAjaxResult {
 	 * 数据
 	 */
 	private Object data;
-	// private Object rows;
 
 	/**
 	 * 总的记录数
@@ -39,20 +42,15 @@ public class ControllerAjaxResult {
 	 */
 	private String totalPage;
 
-	// private String jsessionId;
-
-	/*
-	 * public Object getRows() { return rows; }
-	 * 
-	 * public void setRows(Object rows) { this.rows = rows; }
-	 */
-
 	public String getTotal() {
 		return total;
 	}
 
 	public void setTotal(String total) {
 		this.total = total;
+	}
+
+	public ControllerAjaxResult() {
 	}
 
 	public ControllerAjaxResult(String code, String message, Object data) {
