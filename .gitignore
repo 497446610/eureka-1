@@ -7,11 +7,4 @@ eureka/base/target/
 eureka/biz-front/.settings/
 eureka/ptInterface/.settings/
 .recommenders/
-*.prefs
-*.component
-*.xml
-*.properties
-*.MF
-*.gitignore
-*.project
 eureka/biz-front/bin/
