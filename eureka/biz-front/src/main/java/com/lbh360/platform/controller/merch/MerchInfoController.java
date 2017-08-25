@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lbh360.platform.base.service.bean.merch.MerchBaseInfoBean;
@@ -28,21 +28,20 @@ import com.pt.core.controller.ControllerAjaxResult;
  * @version 1.0
  */
 @RestController
-@RequestMapping("merch")
+@RequestMapping(value = "merch")
 public class MerchInfoController extends AbstractCommand {
 	private final static Logger logger = LoggerFactory.getLogger(MerchServiceImpl.class);
 
 	@Autowired
 	IMerchService merchService;
 
-	@RequestMapping("list")
-	@ResponseBody
+	@RequestMapping(value = "list", produces = "application/json; charset=UTF-8")
 	public ControllerAjaxResult merchlist(HttpServletRequest request) {
 		Page page = getPage(request);
 		List<MerchBaseInfoBean> result;
 		try {
 			Map<String, Object> condition = request2Map(request);
-			
+
 			result = merchService.queryMerchInfo4Restaurant(condition, null, page);
 			return ajaxResult(ControllerAjaxResult.SUCCESS, "", result, page);
 		} catch (ServiceException e) {
@@ -50,7 +49,22 @@ public class MerchInfoController extends AbstractCommand {
 		}
 	}
 
-	@RequestMapping("save")
+	@RequestMapping(value = "list2", produces = "application/json; charset=UTF-8")
+	public ResponseEntity<ControllerAjaxResult> merchlist2(HttpServletRequest request) {
+		Page page = getPage(request);
+		List<MerchBaseInfoBean> result;
+		try {
+			Map<String, Object> condition = request2Map(request);
+
+			result = merchService.queryMerchInfo4Restaurant(condition, null, page);
+
+			return ResponseEntity.ok(ajaxResult(ControllerAjaxResult.SUCCESS, "", result, page));
+		} catch (ServiceException e) {
+			return ResponseEntity.badRequest().body(null);
+		}
+	}
+
+	@RequestMapping(value = "save", produces = "application/json; charset=UTF-8")
 	public ControllerAjaxResult save(@ModelAttribute MerchBaseInfoBean merch) {
 		try {
 			merchService.addMerchBaseInfo(merch);

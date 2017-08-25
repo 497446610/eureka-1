@@ -15,7 +15,7 @@ import com.lbh360.platform.base.common.ServiceErrorCode;
 import com.lbh360.platform.base.dao.domain.merch.MerchBaseInfo;
 import com.lbh360.platform.base.service.bean.merch.MerchBaseInfoBean;
 import com.lbh360.platform.dao.common.Page;
-import com.lbh360.platform.dao.mapper.merch.MerchBaseInfoMapper;
+import com.lbh360.platform.dao.manager.MerchInfoManager;
 import com.lbh360.platform.service.merch.IMerchService;
 import com.pt.core.common.exception.ServiceException;
 
@@ -31,7 +31,7 @@ public class MerchServiceImpl implements IMerchService {
 	private final static Logger logger = LoggerFactory.getLogger(MerchServiceImpl.class);
 
 	@Autowired
-	MerchBaseInfoMapper merchBaseInfoMapper;
+	MerchInfoManager merchInfoManager;
 
 	@Override
 	public List<MerchBaseInfoBean> queryMerchInfo4Restaurant(Map<String, Object> condition, String orderField,
@@ -39,7 +39,8 @@ public class MerchServiceImpl implements IMerchService {
 		logger.debug("开始查询商品信息！");
 		List<MerchBaseInfoBean> result = new ArrayList<>();
 
-		List<MerchBaseInfo> list = merchBaseInfoMapper.selectByCondition(condition, page);
+		List<MerchBaseInfo> list = merchInfoManager.selectByCondition(condition, page);
+		
 		try {
 			for (MerchBaseInfo merchBaseInfo : list) {
 				MerchBaseInfoBean bean = new MerchBaseInfoBean();
@@ -59,10 +60,10 @@ public class MerchServiceImpl implements IMerchService {
 		MerchBaseInfo record = new MerchBaseInfo();
 		try {
 			
-			merchBaseInfoMapper.deleteByPrimaryKey(3355L);
+			merchInfoManager.deleteByPrimaryKey(3355L);
 			
 			BeanUtils.copyProperties(record, merchbaseInfo);
-			merchBaseInfoMapper.insert(record);
+			merchInfoManager.insert(record);
 			merchbaseInfo.setId(record.getId());
 			//throw new ServiceException(ServiceErrorCode.ADD.toString(), "测试异常事务！");
 		} catch (Exception e) {

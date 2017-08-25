@@ -6,10 +6,12 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
 import com.lbh360.platform.dao.common.Page;
 import com.pt.core.controller.ControllerAjaxResult;
+import com.pt.core.converter.BigDecimalConverter;
 import com.pt.core.utils.ObjectUtil;
 
 /**
@@ -19,6 +21,13 @@ import com.pt.core.utils.ObjectUtil;
  * 
  */
 public abstract class AbstractCommand {
+	
+	static {
+		// 注册BigDecimal的转换器，即允许BeanUtils.copyProperties时的源目标的BigDecimal类型的值允许为空
+		ConvertUtils.register(new BigDecimalConverter(),
+				java.math.BigDecimal.class);
+	}
+	
 
 	protected final String SESSIONLOGIN = "SESSIONUSER";
 	protected final String SIGNUPINFO = "SIGNUPINFO";
