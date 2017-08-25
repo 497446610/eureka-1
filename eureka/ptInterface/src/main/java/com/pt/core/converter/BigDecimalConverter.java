@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.converters.NumberConverter;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class BigDecimalConverter extends NumberConverter {
 	public BigDecimalConverter() {
 		super(true);
@@ -44,7 +44,7 @@ public class BigDecimalConverter extends NumberConverter {
 		return BigDecimal.class;
 	}
 
-	Class _primitive( final Class type) {
+	Class _primitive(final Class type) {
 		if ((type == null) || (!(type.isPrimitive())))
 			return type;
 		if (type == Integer.TYPE)

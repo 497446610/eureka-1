@@ -1,30 +1,40 @@
-package com.lbh360.platform.base.dao.domain.merch;
+package com.lbh360.platform.base.service.vo.merch;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-import javax.persistence.Column;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 商品信息
  * 
  */
-@SuppressWarnings("serial")
-@Table(name = "merch_base_info")
-public class MerchBaseInfo implements Serializable {
+public class MerchBaseInfoVO implements Serializable {
+
+	private static final long serialVersionUID = 6512514632351875193L;
+
+	public static final Integer ONLINE_YES = 1;// 已上架
+
+	public static final Integer ONLINE_NO = 0;// 未上架
+
+	public static final Integer ISSTAND_YES = 1;// 标品
+
+	public static final Integer ISSTAND_NO = 0;// 非标品
 
 	/**
 	 * 商品ID
 	 */
 	private Long id;
-	
+
 	/**
 	 * 企业ID
 	 */
-	@Column(name="compid")
 	private String compId;
-	
+
+	/**
+	 * 供应商名称
+	 */
+	private String compNM;
 
 	/**
 	 * 商品名称
@@ -39,25 +49,31 @@ public class MerchBaseInfo implements Serializable {
 	/**
 	 * 一级分类
 	 */
-	@Column(name="level1code")
 	private String level1Code;
+
+	/**
+	 * 一级分类名称
+	 */
+	private String level1Name;
 
 	/**
 	 * 二级分类
 	 */
-	@Column(name="level2code")
 	private String level2Code;
+
+	/**
+	 * 二级分类名称
+	 */
+	private String level2Name;
 
 	/**
 	 * 计量单位
 	 */
-	@Column(name="unitname")
 	private String unitName;
 
 	/**
 	 * 包装规格
 	 */
-	@Column(name="packsize")
 	private String packSize;
 
 	/**
@@ -80,19 +96,16 @@ public class MerchBaseInfo implements Serializable {
 	 */
 	private String place;
 
-
 	/**
 	 * 上架状态<br/>
 	 * 0、未上架 1、已上架
 	 */
-	@Column(name="isonline")
 	private Integer isOnline;
 
 	/**
 	 * 平台控制是否能产生交易<br/>
 	 * 0、不能产生交易 1、可以产生交易
 	 */
-	@Column(name="istrans")
 	private Integer isTrans;
 
 	// -----配送说明------
@@ -105,105 +118,127 @@ public class MerchBaseInfo implements Serializable {
 	/**
 	 * 下单时间之前配送时间(多少小时内）
 	 */
-	@Column(name="beforetimes")
 	private Integer beforeTimes;
 
 	/**
 	 * 下单时间之后配送时间(多少小时内）
 	 */
-	@Column(name="aftertimes")
 	private Integer afterTimes;
 
 	/**
 	 * 商品图片URL
 	 */
-	@Column(name="headurl")
 	private String headURL;
-	
+
 	/**
-	 * 商品图片URL
+	 * 缩微头像
 	 */
-	@Column(name="smallheadurl")
-	private String  smallHeadURL;
+	private String smallHeadURL;
 
 	/**
 	 * 商品说明
 	 */
 	private String descript;
-	
+
 	/**
-	 *单价
+	 * 单价
 	 */
 	private BigDecimal price;
 
 	/**
-	 *采购价
+	 * 采购价
 	 */
-	@Column(name="costprice")
 	private BigDecimal costPrice;
-	
 
 	/**
-	 *市场价
+	 * 市场价
 	 */
-	@Column(name="markprice")
 	private BigDecimal markPrice;
-	
+
 	/**
 	 * 价格生效时间(yyyy-MM-dd HH:mm:ss)
 	 */
-	@Column(name="starttime")
 	private String startTime;
-	
-	
+
 	/**
 	 * 最低采购量
 	 */
-	@Column(name="minnum")
 	private BigDecimal minNum;
 
 	/**
 	 * 供应量（1可以销售，0已售罄）
 	 */
-	@Column(name="totalnum")
 	private BigDecimal totalNum;
 
 	/**
 	 * 每人限购
 	 */
-	@Column(name="limitnum")
 	private BigDecimal limitNum;
 
 	/**
 	 * 创建时间yyyy-MM-dd
 	 */
-	@Column(name="createtime")
 	private String createTime;
-	
+
+	/**
+	 * 累计订单数量
+	 */
+	private Long orderNum;
+
+	/**
+	 * 本月订单数量
+	 */
+	private Long monthOrderNum;
+
 	/**
 	 * 包装内的单价
 	 */
-	@Column(name="secprice")
 	private BigDecimal secPrice;
-	
+
 	/**
 	 * 包装内的计量单位
 	 */
-	@Column(name="secunitname")
 	private String secUnitName;
-	
+
+	/**
+	 * 商品头像图
+	 */
+	private List<String> imageList;
+
+	/**
+	 * 评论数量
+	 */
+	private Integer commentNum;
+
+	/**
+	 * 评论累计得分
+	 */
+	private Integer commentScore;
+
+	/**
+	 * 供货商端商品的ID
+	 */
+	private String extId;
+
+	/**
+	 * 是否已经收藏
+	 */
+	private Boolean isCollect = false;
+
 	/**
 	 * 是否标品 0 否，1是
 	 */
-	@Column(name="isstand")
 	private Integer isStand;
-	
+
 	/**
 	 * 关联的非标品商品ID
 	 */
-	@Column(name="linkmerchid")
 	private Long linkMerchId;
-	
+
+	/**
+	 * 是否支持白条（0 不支持，1支持）
+	 */
+	private Integer isSupportLous;
 
 	public Long getId() {
 		return id;
@@ -412,7 +447,7 @@ public class MerchBaseInfo implements Serializable {
 	public void setLimitNum(BigDecimal limitNum) {
 		this.limitNum = limitNum;
 	}
-	
+
 
 	public String getCompId() {
 		return compId;
@@ -420,6 +455,46 @@ public class MerchBaseInfo implements Serializable {
 
 	public void setCompId(String compId) {
 		this.compId = compId;
+	}
+
+	public String getCompNM() {
+		return compNM;
+	}
+
+	public void setCompNM(String compNM) {
+		this.compNM = compNM;
+	}
+
+	public Long getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(Long orderNum) {
+		this.orderNum = orderNum;
+	}
+
+	public Long getMonthOrderNum() {
+		return monthOrderNum;
+	}
+
+	public void setMonthOrderNum(Long monthOrderNum) {
+		this.monthOrderNum = monthOrderNum;
+	}
+
+	public String getLevel1Name() {
+		return level1Name;
+	}
+
+	public void setLevel1Name(String level1Name) {
+		this.level1Name = level1Name;
+	}
+
+	public String getLevel2Name() {
+		return level2Name;
+	}
+
+	public void setLevel2Name(String level2Name) {
+		this.level2Name = level2Name;
 	}
 
 	public BigDecimal getSecPrice() {
@@ -439,11 +514,57 @@ public class MerchBaseInfo implements Serializable {
 	}
 
 	public String getSmallHeadURL() {
+		if (smallHeadURL == null || smallHeadURL.trim().length() <= 0) {
+			return headURL;
+		}
 		return smallHeadURL;
 	}
 
 	public void setSmallHeadURL(String smallHeadURL) {
 		this.smallHeadURL = smallHeadURL;
+	}
+
+	public List<String> getImageList() {
+		if (imageList == null) {
+			return new ArrayList<>();
+		}
+		return imageList;
+	}
+
+	public void setImageList(List<String> imageList) {
+		this.imageList = imageList;
+	}
+
+	public Integer getCommentNum() {
+		return commentNum;
+	}
+
+	public void setCommentNum(Integer commentNum) {
+		this.commentNum = commentNum;
+	}
+
+	public Integer getCommentScore() {
+		return commentScore;
+	}
+
+	public void setCommentScore(Integer commentScore) {
+		this.commentScore = commentScore;
+	}
+
+	public String getExtId() {
+		return extId;
+	}
+
+	public void setExtId(String extId) {
+		this.extId = extId;
+	}
+
+	public Boolean getIsCollect() {
+		return isCollect;
+	}
+
+	public void setIsCollect(Boolean isCollect) {
+		this.isCollect = isCollect;
 	}
 
 	public Integer getIsStand() {
@@ -462,7 +583,12 @@ public class MerchBaseInfo implements Serializable {
 		this.linkMerchId = linkMerchId;
 	}
 
-	
-	
+	public Integer getIsSupportLous() {
+		return isSupportLous;
+	}
+
+	public void setIsSupportLous(Integer isSupportLous) {
+		this.isSupportLous = isSupportLous;
+	}
 
 }
