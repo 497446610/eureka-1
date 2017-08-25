@@ -16,13 +16,14 @@ public class MerchController {
 
 	@RequestMapping(value = "list", produces = "application/json; charset=UTF-8")
 	public ControllerAjaxResult list() {
-		ControllerAjaxResult result = restTemplate.getForObject("http://merchService/merch/list", ControllerAjaxResult.class);
+		ControllerAjaxResult result = restTemplate.getForObject("http://merchService/merch/list",
+				ControllerAjaxResult.class);
 		return result;
 	}
 
-	@RequestMapping(value = "list2", produces = "application/json; charset=UTF-8")
-	public ResponseEntity list2() {
-		ResponseEntity<ControllerAjaxResult> result = restTemplate.getForObject("http://merchService/merch/list2",
+	@RequestMapping("list2")
+	public ResponseEntity<ControllerAjaxResult> list2() {
+		ResponseEntity<ControllerAjaxResult> result = restTemplate.getForObject("http://merchService/list2",
 				ResponseEntity.class);
 		return result;
 	}
