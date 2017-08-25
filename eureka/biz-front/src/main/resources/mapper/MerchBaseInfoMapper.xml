@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lbh360.platform.dao.mapper.MerchBaseInfoMapper">
+<mapper namespace="com.lbh360.cloud.platform.dao.mapper.MerchBaseInfoMapper">
 	<resultMap id="BaseResultMap"
 		type="com.lbh360.platform.base.dao.domain.merch.MerchBaseInfo">
 		<id column="id" jdbcType="BIGINT" property="id" />
@@ -58,7 +58,9 @@
 				)
 				)
 			</if>
+			
 			<if test="brand != null"> and o.brand like #{brand}</if>
+			
 			<if test="pricemin != null">
 				<![CDATA[ and o.pricemin >= #{pricemin}]]>
 			</if>

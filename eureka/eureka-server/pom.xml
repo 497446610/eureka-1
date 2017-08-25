@@ -5,15 +5,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
+		<groupId>com.lbh360.cloud</groupId>
+		<artifactId>eureka</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 		<relativePath />
 	</parent>
 
-	<groupId>com.lbh360.cloud</groupId>
 	<artifactId>eureka-server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>eureka-server</name>
 	<url>http://maven.apache.org</url>
 
