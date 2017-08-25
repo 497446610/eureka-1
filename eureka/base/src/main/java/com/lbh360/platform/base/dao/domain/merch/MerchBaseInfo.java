@@ -3,11 +3,15 @@ package com.lbh360.platform.base.dao.domain.merch;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
 /**
  * 商品信息
  * 
  */
 @SuppressWarnings("serial")
+@Table(name = "merch_base_info")
 public class MerchBaseInfo implements Serializable {
 
 	/**
@@ -34,21 +38,25 @@ public class MerchBaseInfo implements Serializable {
 	/**
 	 * 一级分类
 	 */
+	@Column(name="level1code")
 	private String level1Code;
 
 	/**
 	 * 二级分类
 	 */
+	@Column(name="level2code")
 	private String level2Code;
 
 	/**
 	 * 计量单位
 	 */
+	@Column(name="unitname")
 	private String unitName;
 
 	/**
 	 * 包装规格
 	 */
+	@Column(name="packsize")
 	private String packSize;
 
 	/**
@@ -76,12 +84,14 @@ public class MerchBaseInfo implements Serializable {
 	 * 上架状态<br/>
 	 * 0、未上架 1、已上架
 	 */
+	@Column(name="isonline")
 	private Integer isOnline;
 
 	/**
 	 * 平台控制是否能产生交易<br/>
 	 * 0、不能产生交易 1、可以产生交易
 	 */
+	@Column(name="istrans")
 	private Integer isTrans;
 
 	// -----配送说明------
@@ -94,21 +104,25 @@ public class MerchBaseInfo implements Serializable {
 	/**
 	 * 下单时间之前配送时间(多少小时内）
 	 */
+	@Column(name="beforetimes")
 	private Integer beforeTimes;
 
 	/**
 	 * 下单时间之后配送时间(多少小时内）
 	 */
+	@Column(name="aftertimes")
 	private Integer afterTimes;
 
 	/**
 	 * 商品图片URL
 	 */
+	@Column(name="headurl")
 	private String headURL;
 	
 	/**
 	 * 商品图片URL
 	 */
+	@Column(name="smallheadurl")
 	private String  smallHeadURL;
 
 	/**
@@ -124,58 +138,69 @@ public class MerchBaseInfo implements Serializable {
 	/**
 	 *采购价
 	 */
+	@Column(name="costprice")
 	private BigDecimal costPrice;
 	
 
 	/**
 	 *市场价
 	 */
+	@Column(name="markprice")
 	private BigDecimal markPrice;
 	
 	/**
 	 * 价格生效时间(yyyy-MM-dd HH:mm:ss)
 	 */
+	@Column(name="starttime")
 	private String startTime;
 	
 	
 	/**
 	 * 最低采购量
 	 */
+	@Column(name="minnum")
 	private BigDecimal minNum;
 
 	/**
 	 * 供应量（1可以销售，0已售罄）
 	 */
+	@Column(name="totalnum")
 	private BigDecimal totalNum;
 
 	/**
 	 * 每人限购
 	 */
+	@Column(name="limitnum")
 	private BigDecimal limitNum;
 
 	/**
 	 * 创建时间yyyy-MM-dd
 	 */
+	@Column(name="createtime")
 	private String createTime;
 	
 	/**
 	 * 包装内的单价
 	 */
+	@Column(name="secprice")
 	private BigDecimal secPrice;
 	
 	/**
 	 * 包装内的计量单位
 	 */
+	@Column(name="secunitname")
 	private String secUnitName;
 	
 	/**
 	 * 是否标品 0 否，1是
 	 */
+	@Column(name="isstand")
 	private Integer isStand;
 	
 	/**
 	 * 关联的非标品商品ID
 	 */
+	@Column(name="linkmerchid")
 	private Long linkMerchId;
 	
 

@@ -15,7 +15,7 @@ import com.lbh360.platform.base.common.ServiceErrorCode;
 import com.lbh360.platform.base.dao.domain.merch.MerchBaseInfo;
 import com.lbh360.platform.base.service.bean.merch.MerchBaseInfoBean;
 import com.lbh360.platform.dao.common.Page;
-import com.lbh360.platform.dao.mapper.merch.MerchBaseInfoMapper;
+import com.lbh360.platform.dao.mapper.MerchBaseInfoMapper;
 import com.lbh360.platform.service.merch.IMerchService;
 import com.pt.core.common.exception.ServiceException;
 
@@ -40,6 +40,7 @@ public class MerchServiceImpl implements IMerchService {
 		List<MerchBaseInfoBean> result = new ArrayList<>();
 
 		List<MerchBaseInfo> list = merchBaseInfoMapper.selectByCondition(condition, page);
+		
 		try {
 			for (MerchBaseInfo merchBaseInfo : list) {
 				MerchBaseInfoBean bean = new MerchBaseInfoBean();

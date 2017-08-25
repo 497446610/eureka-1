@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbh360.platform.dao.mapper.MerchBaseInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.lbh360.platform.base.dao.domain.merch.MerchBaseInfo">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="aftertimes" jdbcType="INTEGER" property="afterTimes" />
+		<result column="beforetimes" jdbcType="INTEGER" property="beforeTimes" />
+		<result column="brand" jdbcType="VARCHAR" property="brand" />
+		<result column="compid" jdbcType="VARCHAR" property="compid" />
+		<result column="costprice" jdbcType="DECIMAL" property="costPrice" />
+		<result column="createtime" jdbcType="VARCHAR" property="createTime" />
+		<result column="dayofhour" jdbcType="INTEGER" property="dayofhour" />
+		<result column="descript" jdbcType="VARCHAR" property="descript" />
+		<result column="grade" jdbcType="VARCHAR" property="grade" />
+		<result column="headurl" jdbcType="VARCHAR" property="headURL" />
+		<result column="isonline" jdbcType="INTEGER" property="isOnline" />
+		<result column="istrans" jdbcType="INTEGER" property="isTrans" />
+		<result column="level1code" jdbcType="VARCHAR" property="level1Code" />
+		<result column="level2code" jdbcType="VARCHAR" property="level2Code" />
+		<result column="limitnum" jdbcType="DECIMAL" property="limitNum" />
+		<result column="markprice" jdbcType="DECIMAL" property="markPrice" />
+		<result column="minnum" jdbcType="DECIMAL" property="minNum" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="packsize" jdbcType="VARCHAR" property="packSize" />
+		<result column="paths" jdbcType="VARCHAR" property="paths" />
+		<result column="place" jdbcType="VARCHAR" property="place" />
+		<result column="price" jdbcType="DECIMAL" property="price" />
+		<result column="starttime" jdbcType="VARCHAR" property="startTime" />
+		<result column="totalnum" jdbcType="DECIMAL" property="totalNum" />
+		<result column="unitname" jdbcType="VARCHAR" property="unitName" />
+		<result column="verder" jdbcType="VARCHAR" property="verder" />
+		<result column="secunitName" jdbcType="VARCHAR" property="secUnitName" />
+		<result column="secPrice" jdbcType="DECIMAL" property="secPrice" />
+		<result column="smallheadurl" jdbcType="VARCHAR" property="smallHeadURL" />
+		<result column="isStand" jdbcType="TINYINT" property="isStand" />
+		<result column="linkMerchId" jdbcType="BIGINT" property="linkMerchId" />
+	</resultMap>
+
+
+
+	<select id="selectByCondition" parameterType="Map" resultMap="BaseResultMap">
+		select o.*
+		from merch_base_info o left join merch_sold s on o.id = s.id
+		<where>
+			o.isOnline=1
+			<if test="compId != null"> and o.compId=#{compId}</if>
+			<if test="level1Code != null"> and o.level1Code=#{level1Code}</if>
+			<if test="level2Code != null"> and o.level2Code=#{level2Code}</if>
+			<if test="isStand != null"> and o.isStand=#{isStand}</if>
+			<if test="search != null">
+				<bind name="search_" value="'%'+_parameter.search+'%'"/>
+				and (
+				o.name like #{search_}
+				or exists (
+				select 1 from m_auth a where o.compid = a.compid and a.companyname like
+				#{search_}
+				)
+				)
+			</if>
+			<if test="brand != null"> and o.brand like #{brand}</if>
+			<if test="pricemin != null">
+				<![CDATA[ and o.pricemin >= #{pricemin}]]>
+			</if>
+			<if test="pricemax != null"> 
+				<![CDATA[and o.pricemin <=  #{pricemax}]]>
+			</if>
+
+			<if test="isSupportBHB != null">
+				and exists ( select 1 from merch_bhb_rule r where o.id=r.id and
+				support=#{isSupportBHB} )
+			</if>
+
+			<if test='orderField == "orderNum.desc"'>
+				order by o.TOTALNUM desc,s.orderNum desc, o.id asc
+			</if>
+
+			<if test='orderField == "price.desc"'>
+				order by o.TOTALNUM desc,o.price desc, o.id asc
+			</if>
+			<if test="orderField == null">
+				order by o.TOTALNUM desc,o.price asc, o.id asc
+			</if>
+		</where>
+
+	</select>
+
+</mapper>

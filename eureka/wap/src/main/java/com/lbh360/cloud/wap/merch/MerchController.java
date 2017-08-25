@@ -1,6 +1,7 @@
 package com.lbh360.cloud.wap.merch;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -15,8 +16,14 @@ public class MerchController {
 
 	@RequestMapping("list")
 	public ControllerAjaxResult list() {
-		ControllerAjaxResult result = restTemplate
-				.getForObject("http://merchService/merch/list", ControllerAjaxResult.class);
+		ControllerAjaxResult result = restTemplate.getForObject("http://merchService/list", ControllerAjaxResult.class);
+		return result;
+	}
+
+	@RequestMapping("list2")
+	public ResponseEntity list2() {
+		ResponseEntity<ControllerAjaxResult> result = restTemplate.getForObject("http://merchService/list2",
+				ResponseEntity.class);
 		return result;
 	}
 
