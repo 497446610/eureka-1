@@ -20,7 +20,7 @@ public class MerchController extends BaseController {
 
 	@RequestMapping(value = "list", produces = "application/json; charset=UTF-8")
 	public ControllerAjaxResult list() {
-		ControllerAjaxResult result = restTemplate.getForObject("http://merchService/merch/list",
+		ControllerAjaxResult result = restTemplate.getForObject("http://merchservice/merch/list",
 				ControllerAjaxResult.class);
 		return result;
 	}
@@ -33,7 +33,7 @@ public class MerchController extends BaseController {
 
 		// HttpEntity<JSONObject> entity = new HttpEntity<JSONObject>(parm);
 
-		ControllerAjaxResult result = restTemplate.postForObject("http://merchService/merch/list", parm,
+		ControllerAjaxResult result = restTemplate.postForObject("http://merchservice/merch/list", parm,
 				ControllerAjaxResult.class);
 		return result;
 	}

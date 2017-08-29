@@ -29,7 +29,7 @@ import com.pt.core.controller.ControllerAjaxResult;
  * @version 1.0
  */
 @RestController
-@RequestMapping(value = "merch")
+//@RequestMapping(value = "merch")
 public class MerchInfoController extends AbstractCommand {
 	private final static Logger logger = LoggerFactory.getLogger(MerchServiceImpl.class);
 
