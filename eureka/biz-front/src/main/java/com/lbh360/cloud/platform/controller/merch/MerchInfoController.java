@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lbh360.cloud.platform.controller.AbstractCommand;
@@ -29,7 +28,7 @@ import com.pt.core.controller.ControllerAjaxResult;
  * @version 1.0
  */
 @RestController
-//@RequestMapping(value = "merch")
+@RequestMapping(value = "merch")
 public class MerchInfoController extends AbstractCommand {
 	private final static Logger logger = LoggerFactory.getLogger(MerchServiceImpl.class);
 

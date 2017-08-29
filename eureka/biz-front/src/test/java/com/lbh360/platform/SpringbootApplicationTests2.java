@@ -16,10 +16,6 @@ import com.lbh360.cloud.platform.dao.common.Page;
 import com.lbh360.cloud.platform.service.merch.IMerchService;
 import com.lbh360.platform.base.service.vo.merch.MerchBaseInfoVO;
 
-/*import com.dbuyer.springboot.jpa.order.MemberInfo;
-import com.dbuyer.springboot.jpa.order.MemberInfoRepository;
-import com.dbuyer.springboot.jpa.report.TradeOrder;
-import com.dbuyer.springboot.jpa.report.TradeOrderRepository;*/
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

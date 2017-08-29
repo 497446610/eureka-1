@@ -87,6 +87,7 @@ public class MerchServiceImpl implements IMerchService {
 			merchbaseInfo.setId(record.getId());
 			// throw new ServiceException(ServiceErrorCode.ADD.toString(),
 			// "测试异常事务！");
+
 		} catch (Exception e) {
 			throw new ServiceException(ServiceErrorCode.ADD.toString(), "保存商品信息出现异常！");
 		}

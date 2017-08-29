@@ -17,4 +17,5 @@ public interface MerchBaseInfoMapper extends Mapper<MerchBaseInfo> {
 	List<MerchBaseInfo> selectByCondition(Map<String, Object> condition, Page page);
 	
 	List<MerchBaseInfo> selectByDTO(MerchBaseInfoDTO dto, Page page);
+
 }
