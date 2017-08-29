@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.pt.core.utils.ObjectUtil;
 
 public class AccessFilter extends ZuulFilter {
 
@@ -17,9 +18,13 @@ public class AccessFilter extends ZuulFilter {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 
-		
 		logger.info(" send {} request to {}", request.getMethod(), request.getRequestURL().toString());
-		
+
+		String token = request.getParameter("token");
+		if (ObjectUtil.isNull(token)) {
+			setFailedRequest(403, "403 Forbidden!");
+		}
+
 		return null;
 	}
 
@@ -36,6 +41,16 @@ public class AccessFilter extends ZuulFilter {
 	@Override
 	public String filterType() {
 		return "pre";
+	}
+
+	private void setFailedRequest(int code, String msg) {
+		RequestContext ctx = RequestContext.getCurrentContext();
+		ctx.setResponseStatusCode(code);
+		if (ctx.getResponseBody() == null) {
+			ctx.setResponseBody(msg);
+			ctx.setSendZuulResponse(false);
+			throw new RuntimeException("Code: " + code + ", " + msg); // optional
+		}
 	}
 
 }
