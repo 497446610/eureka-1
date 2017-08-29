@@ -54,7 +54,6 @@ public class MerchInfoController extends AbstractCommand {
 		List<MerchBaseInfoVO> result;
 		try {
 			Page page = new Page(merchdto.getPageNo(), merchdto.getPageSize());
-
 			result = merchService.queryMerchInfo4Restaurant(merchdto, page);
 			return ajaxResult(ControllerAjaxResult.SUCCESS, "", result, page);
 		} catch (ServiceException e) {
