@@ -44,7 +44,20 @@ public class AccessFilter extends ZuulFilter {
 
 	@Override
 	public boolean shouldFilter() {
-		return true;
+
+		RequestContext ctx = RequestContext.getCurrentContext();
+		HttpServletRequest request = ctx.getRequest();
+		String reqUrl = request.getRequestURL().toString();
+		if (ObjectUtil.isNull(reqUrl)) {// 不需要过滤
+			return false;
+		}
+
+		if (reqUrl.indexOf("/dddd/") > 0) { // 需要验证的接口地址
+			return true;
+		}
+
+		return false;
+
 	}
 
 	@Override

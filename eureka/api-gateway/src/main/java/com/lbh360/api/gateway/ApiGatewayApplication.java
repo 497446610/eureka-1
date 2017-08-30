@@ -11,8 +11,6 @@ import com.lbh360.api.gateway.filter.AccessFilter;
 @SpringCloudApplication
 public class ApiGatewayApplication {
 	
-	
-	
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(ApiGatewayApplication.class).web(true).run(args);
 	}

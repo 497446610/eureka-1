@@ -83,7 +83,7 @@
 
 	</select>
 	
-	<select id="selectByDTO"  resultMap="BaseResultMap">
+	<select id="selectByDTO"   resultMap="BaseResultMap">
 		select o.*
 		from merch_base_info o left join merch_sold s on o.id = s.id
 		<where>
