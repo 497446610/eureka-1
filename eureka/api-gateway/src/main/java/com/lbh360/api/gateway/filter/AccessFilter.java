@@ -4,14 +4,21 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.pt.core.utils.ObjectUtil;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class AccessFilter extends ZuulFilter {
 
 	private final static Logger logger = LoggerFactory.getLogger(AccessFilter.class);
+
+	RedisTemplate redisTemplate;
 
 	@Override
 	public Object run() {
@@ -21,8 +28,15 @@ public class AccessFilter extends ZuulFilter {
 		logger.info(" send {} request to {}", request.getMethod(), request.getRequestURL().toString());
 
 		String token = request.getParameter("token");
+
 		if (ObjectUtil.isNull(token)) {
-			setFailedRequest(403, "403 Forbidden!");
+
+		} else {
+			// 从redis服务器获取用户登录信息
+			Object memberInfo = redisTemplate.opsForHash().get("session", token);
+			if (memberInfo == null) {
+				setFailedRequest(403, "403 Forbidden!");
+			}
 		}
 
 		return null;
@@ -51,6 +65,16 @@ public class AccessFilter extends ZuulFilter {
 			ctx.setSendZuulResponse(false);
 			throw new RuntimeException("Code: " + code + ", " + msg); // optional
 		}
+	}
+
+	@Autowired
+	public void setRedisTemplate(RedisTemplate redisTemplate) {
+		RedisSerializer stringSerializer = new StringRedisSerializer();
+		redisTemplate.setKeySerializer(stringSerializer);
+		redisTemplate.setValueSerializer(stringSerializer);
+		redisTemplate.setHashKeySerializer(stringSerializer);
+		redisTemplate.setHashValueSerializer(stringSerializer);
+		this.redisTemplate = redisTemplate;
 	}
 
 }
