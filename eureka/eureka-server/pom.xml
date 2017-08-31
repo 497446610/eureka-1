@@ -8,11 +8,12 @@
 		<groupId>com.lbh360.cloud</groupId>
 		<artifactId>eureka</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath />
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>eureka-server</artifactId>
 	<name>eureka-server</name>
+	<version>1.5.6.RELEASE</version>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -54,6 +55,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

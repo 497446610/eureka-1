@@ -61,6 +61,18 @@ public class MerchInfoController extends AbstractCommand {
 		}
 	}
 
+	
+	@RequestMapping(value = "list4", produces = "application/json; charset=UTF-8")
+	public ControllerAjaxResult queryByDto4(@ModelAttribute MerchBaseInfoDTO merchdto) {
+		List<MerchBaseInfoVO> result;
+		try {
+			Page page = new Page(merchdto.getPageNo(), merchdto.getPageSize());
+			result = merchService.queryMerchInfo4Restaurant(merchdto, page);
+			return ajaxResult(ControllerAjaxResult.SUCCESS, "", result, page);
+		} catch (ServiceException e) {
+			return ajaxResult(ControllerAjaxResult.FAILE, "数据查询失败！");
+		}
+	}
 	@RequestMapping(value = "save", produces = "application/json; charset=UTF-8")
 	public ControllerAjaxResult save(@ModelAttribute MerchBaseInfoVO merch) {
 		try {

@@ -7,6 +7,7 @@
 		<groupId>com.lbh360.cloud</groupId>
 		<artifactId>eureka</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>ptInterface</artifactId>
