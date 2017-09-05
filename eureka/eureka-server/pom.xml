@@ -18,6 +18,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<docker.image.prefix>hcdog</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -59,6 +60,28 @@
 					<executable>true</executable>
 				</configuration>
 			</plugin>
+
+			<plugin>
+			
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.3.4</version>
+				<configuration>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+				</configuration>
+				
+				<executions>
+					<execution>
+						<id>default</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
